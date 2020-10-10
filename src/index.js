@@ -7,7 +7,27 @@ const options = {
   logger
 };
 
-ffmpeg(fs.createReadStream('assets/video.webm'), options)
-  .output(fs.createWriteStream('assets/transcode-video.mp4'), {end: true})
-  .on('end', () => console.log('Finished processing'))
-  .run();
+async function main() {
+  await new Promise((resolve, reject) => {
+    ffmpeg(fs.createReadStream('assets/video.webm'), options)
+      .output('assets/transcode-video.mp4')
+      .on('error', reject)
+      .on('end', () => {
+        resolve();
+      })
+      .run();
+  });
+
+  await new Promise(((resolve, reject) => {
+    ffmpeg(('assets/transcode-video.mp4'), options)
+      .on('error', reject)
+      .on('end', resolve)
+      .takeScreenshots({count: 1, timemarks: ['00:00:01.000'], size: '320x200'}, "assets/")
+  }));
+
+  console.log('finished');
+  process.exit();
+}
+
+main().then();
+

@@ -4,7 +4,7 @@
   "description": "Testing ffmepg transcoding and thumbnail generation",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node --harmony-top-level-await src/index.js"
   },
   "keywords": [],
   "author": "",
