@@ -1,0 +1,16 @@
+{
+  "name": "node-ffmepg-playground",
+  "version": "1.0.0",
+  "description": "Testing ffmepg transcoding and thumbnail generation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2"
+  }
+}
